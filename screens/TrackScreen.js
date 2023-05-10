@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { View, Text, Button, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+
 import { connect } from 'react-redux';
 
 const TrackScreen = ({ navigation, routine }) => {
@@ -9,13 +10,12 @@ const TrackScreen = ({ navigation, routine }) => {
 
   return (
     <View style={styles.container}>
-      <Text>Your Workout:</Text>
       <FlatList
         data={daysWithRoutines}
         keyExtractor={item => item}
         renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => navigation.navigate('Day', { day: item })}>
-            <Text>{item}</Text>
+          <TouchableOpacity  onPress={() => navigation.navigate('Day', { day: item })}>
+            <Text style={styles.press}>{item}</Text>
           </TouchableOpacity>
         )}
       />
@@ -29,6 +29,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  press: {
+    paddingTop: 20,
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'blue',
+    },
 });
 
 const mapStateToProps = state => ({

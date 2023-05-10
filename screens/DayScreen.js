@@ -10,11 +10,10 @@ const DayScreen = ({ route, routine }) => {
 
   return (
     <View style={styles.container}>
+        <Text style={{fontSize: 16, fontWeight: 'bold'}}>{day}</Text>
+
       {exercises.map((exercise, index) => (
-        <Text key={index}>{exercise.category}:</Text>
-      ))}
-      {exercises.map((exercise, index) => (
-        <Text key={index}>- {exercise.exercise}: {exercise.sets} sets, {exercise.reps} reps</Text>
+        <Text key={index}> {} - {exercise.exercise}: {exercise.sets} sets, {exercise.reps} reps</Text>
       ))}
     </View>
   );

@@ -1,0 +1,101 @@
+{
+    "Biceps": [
+      {
+        "exercise": "Bicep Curl",
+        "description": "Curls that target the bicep muscles",
+        "sets": 3,
+        "reps": 12
+      },
+      {
+        "exercise": "Hammer Curl",
+        "description": "Curls that target the brachialis and brachioradialis muscles",
+        "sets": 3,
+        "reps": 12
+      }
+    ],
+    "Triceps": [
+      {
+        "exercise": "Tricep Extension",
+        "description": "An exercise that targets the tricep muscles",
+        "sets": 3,
+        "reps": 12
+      },
+      {
+        "exercise": "Close Grip Bench Press",
+        "description": "A compound exercise that targets the triceps and chest",
+        "sets": 3,
+        "reps": 12
+      }
+    ],
+    "Legs": [
+      {
+        "exercise": "Squats",
+        "description": "A compound exercise that targets the quadriceps, hamstrings, and glutes",
+        "sets": 3,
+        "reps": 12
+      },
+      {
+        "exercise": "Lunges",
+        "description": "An exercise that targets the quadriceps, hamstrings, and glutes",
+        "sets": 3,
+        "reps": 12
+      }
+    ],
+    "Back": [
+      {
+        "exercise": "Deadlifts",
+        "description": "A compound exercise that targets the lower back, hamstrings, and glutes",
+        "sets": 3,
+        "reps": 12
+      },
+      {
+        "exercise": "Pull-ups",
+        "description": "An exercise that targets the back and biceps",
+        "sets": 3,
+        "reps": 12
+      }
+    ],
+    "Chest": [
+      {
+        "exercise": "Bench Press",
+        "description": "A compound exercise that targets the chest, shoulders, and triceps",
+        "sets": 3,
+        "reps": 12
+      },
+      {
+        "exercise": "Push-ups",
+        "description": "An exercise that targets the chest, shoulders, and triceps",
+        "sets": 3,
+        "reps": 12
+      }
+    ],
+    "Shoulders": [
+      {
+        "exercise": "Overhead Press",
+        "description": "An exercise that targets the shoulders and triceps",
+        "sets": 3,
+        "reps": 12
+      },
+      {
+        "exercise": "Lateral Raises",
+        "description": "An exercise that targets the lateral head of the deltoids",
+        "sets": 3,
+        "reps": 12
+      }
+    ],
+    "Abs": [
+      {
+        "exercise": "Crunches",
+        "description": "An exercise that targets the rectus abdominis",
+        "sets": 3,
+        "reps": 12
+      },
+      {
+        "exercise": "Planks",
+        "description": "An exercise that targets the core muscles",
+        "sets": 3,
+        "reps": 12
+      }
+    ]
+  }
+  

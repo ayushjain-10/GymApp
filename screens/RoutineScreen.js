@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import RNPickerSelect from 'react-native-picker-select';
 import { Checkbox } from 'react-native-paper';
 
+
 import { addToRoutine, addToTracked } from '../reducers/slice';
 
 const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
@@ -44,19 +45,19 @@ const RoutineScreen = ({ exercises, routine, addToRoutine, addToTracked }) => {
 
     return (
         <View style={styles.container}>
-            <Text>Select Day:</Text>
-            <RNPickerSelect
+            <Text style={styles.input}>Select Day:</Text>
+            <RNPickerSelect style={styles.chooseCategory}
                 onValueChange={value => setSelectedDay(value)}
                 items={days.map(day => ({ label: day, value: day }))}
             />
-            <Text>Select Category:</Text>
-            <RNPickerSelect
+            <Text style={styles.input}>Select Category:</Text>
+            <RNPickerSelect style={styles.chooseCategory}
                 onValueChange={value => setSelectedCategory(value)}
                 items={categories.map(category => ({ label: category, value: category }))}
             />
             {selectedCategory && (
                 <>
-                    <Text>Select Exercise:</Text>
+                    <Text style={styles.input}>Select Exercise:</Text>
                     <FlatList
                         data={exercises[selectedCategory]}
                         keyExtractor={item => item.exercise}
@@ -75,9 +76,9 @@ const RoutineScreen = ({ exercises, routine, addToRoutine, addToTracked }) => {
             <Button title="Add to Routine" onPress={handleAddToRoutine} />
             <Text>Your Routine:</Text>
             {Object.entries(routine).map(([day, exercises]) => (
-                <View key={day}>
+                <View  key={day}>
                     {exercises.map((exercise, index) => (
-                        <View key={index}>
+                        <View style={styles.routine} key={index}>
                             <Text>{day}: {exercise.category}</Text>
                             <Text>- {exercise.exercise}</Text>
                             {/* <Text>Sets: {exercise.sets}</Text>
@@ -96,6 +97,36 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    chooseCategory: {
+        inputIOS: { // iOS style
+            fontSize: 16,
+            paddingVertical: 12,
+            paddingHorizontal: 10,
+            borderWidth: 1,
+            borderColor: 'gray',
+            borderRadius: 4,
+            color: 'black',
+            paddingRight: 30,
+            textAlign: 'center' // to ensure the text is not cut off
+        }
+    },
+    input: {
+        padding: 10
+    },
+    inputholder: {
+        padding: 10,
+        height: 40,
+        width: 200,
+        borderColor: 'gray',
+        textAlign: 'center',
+
+    },
+    routine: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        padding: 5
+    }
 });
 
 const mapStateToProps = state => ({
