@@ -36,10 +36,12 @@ const slice = createSlice({
       state.routine[action.payload.day].push(action.payload.exercise);
     },
     addToTracked: (state, action) => {
-      const { exercise, sets, reps } = action.payload;
-      state.tracked[exercise] = { sets, reps, done: false };
+      state.tracked[action.payload.exerciseData.exercise] = {
+        sets: action.payload.exerciseData.sets,
+        reps: action.payload.exerciseData.reps,
+        done: false,
+      };
     },
-    
   },
 });
 

@@ -8,8 +8,24 @@ import store from './store';
 import RoutineScreen from './screens/RoutineScreen';
 import ExercisesScreen from './screens/ExercisesScreen';
 import TrackScreen from './screens/TrackScreen';
+import DayScreen from './screens/DayScreen';
+import { createStackNavigator } from '@react-navigation/stack';
 
 const Tab = createBottomTabNavigator();
+
+const TrackStack = createStackNavigator();
+
+function TrackStackScreen() {
+  return (
+    <TrackStack.Navigator>
+      <TrackStack.Screen name="Track" component={TrackScreen} />
+      <TrackStack.Screen name="Day" component={DayScreen} />
+    </TrackStack.Navigator>
+  );
+}
+
+
+
 
 export default function App() {
   return (
@@ -18,7 +34,7 @@ export default function App() {
         <Tab.Navigator>
           <Tab.Screen name="Routine" component={RoutineScreen} />
           <Tab.Screen name="Exercises" component={ExercisesScreen} />
-          <Tab.Screen name="Track" component={TrackScreen} />
+          <Tab.Screen name="Track" component={TrackStackScreen} />
         </Tab.Navigator>
       </NavigationContainer>
     </Provider>

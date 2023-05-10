@@ -1,24 +1,24 @@
 // screens/TrackScreen.js
 
 import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { toggleExercise } from '../reducers/slice';
 
-const TrackScreen = ({ tracked, toggleExercise }) => {
+const TrackScreen = ({ navigation, routine }) => {
+  const daysWithRoutines = Object.keys(routine);
+
   return (
     <View style={styles.container}>
       <Text>Your Workout:</Text>
-      {tracked.map(({ exerciseData }, index) => (
-        <View key={index}>
-          <Text>{exerciseData.exercise}: {exerciseData.sets} sets, {exerciseData.reps} reps</Text>
-          <Button 
-            title={exerciseData.done ? "Done" : "Not Done"} 
-            onPress={() => toggleExercise(index)} 
-            color={exerciseData.done ? "green" : "red"} 
-          />
-        </View>
-      ))}
+      <FlatList
+        data={daysWithRoutines}
+        keyExtractor={item => item}
+        renderItem={({ item }) => (
+          <TouchableOpacity onPress={() => navigation.navigate('Day', { day: item })}>
+            <Text>{item}</Text>
+          </TouchableOpacity>
+        )}
+      />
     </View>
   );
 };
@@ -32,11 +32,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-  tracked: state.tracked,
+  routine: state.routine,
 });
 
-const mapDispatchToProps = {
-  toggleExercise,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(TrackScreen);
+export default connect(mapStateToProps)(TrackScreen);
