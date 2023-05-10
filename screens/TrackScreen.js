@@ -4,11 +4,13 @@ import React from 'react';
 import { View, Text, Button, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 
 import { connect } from 'react-redux';
+import commonStyles from '../styles';
 
 const TrackScreen = ({ navigation, routine }) => {
   const daysWithRoutines = Object.keys(routine);
 
   return (
+    <View style={commonStyles.container}>
     <View style={styles.container}>
       <FlatList
         data={daysWithRoutines}
@@ -19,6 +21,7 @@ const TrackScreen = ({ navigation, routine }) => {
           </TouchableOpacity>
         )}
       />
+    </View>
     </View>
   );
 };

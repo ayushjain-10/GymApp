@@ -5,6 +5,7 @@ import { View, Text, Button, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import RNPickerSelect from 'react-native-picker-select';
 import { Checkbox } from 'react-native-paper';
+import commonStyles from '../styles';
 
 
 import { addToRoutine, addToTracked } from '../reducers/slice';
@@ -44,49 +45,51 @@ const RoutineScreen = ({ exercises, routine, addToRoutine, addToTracked }) => {
 
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.input}>Select Day:</Text>
-            <RNPickerSelect style={styles.chooseCategory}
-                onValueChange={value => setSelectedDay(value)}
-                items={days.map(day => ({ label: day, value: day }))}
-            />
-            <Text style={styles.input}>Select Category:</Text>
-            <RNPickerSelect style={styles.chooseCategory}
-                onValueChange={value => setSelectedCategory(value)}
-                items={categories.map(category => ({ label: category, value: category }))}
-            />
-            {selectedCategory && (
-                <>
-                    <Text style={styles.input}>Select Exercise:</Text>
-                    <FlatList
-                        data={exercises[selectedCategory]}
-                        keyExtractor={item => item.exercise}
-                        renderItem={({ item }) => (
-                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                <Checkbox
-                                    status={selectedExercises.includes(item.exercise) ? 'checked' : 'unchecked'}
-                                    onPress={() => toggleExerciseSelection(item.exercise)}
-                                />
-                                <Text>{item.exercise}</Text>
-                            </View>
-                        )}
-                    />
-                </>
-            )}
-            <Button title="Add to Routine" onPress={handleAddToRoutine} />
-            <Text>Your Routine:</Text>
-            {Object.entries(routine).map(([day, exercises]) => (
-                <View  key={day}>
-                    {exercises.map((exercise, index) => (
-                        <View style={styles.routine} key={index}>
-                            <Text>{day}: {exercise.category}</Text>
-                            <Text>- {exercise.exercise}</Text>
-                            {/* <Text>Sets: {exercise.sets}</Text>
+        <View style={commonStyles.container}>
+            <View style={styles.container}>
+                <Text style={styles.input}>Select Day:</Text>
+                <RNPickerSelect style={styles.chooseCategory}
+                    onValueChange={value => setSelectedDay(value)}
+                    items={days.map(day => ({ label: day, value: day }))}
+                />
+                <Text style={styles.input}>Select Category:</Text>
+                <RNPickerSelect style={styles.chooseCategory}
+                    onValueChange={value => setSelectedCategory(value)}
+                    items={categories.map(category => ({ label: category, value: category }))}
+                />
+                {selectedCategory && (
+                    <>
+                        <Text style={styles.input}>Select Exercise:</Text>
+                        <FlatList
+                            data={exercises[selectedCategory]}
+                            keyExtractor={item => item.exercise}
+                            renderItem={({ item }) => (
+                                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                    <Checkbox
+                                        status={selectedExercises.includes(item.exercise) ? 'checked' : 'unchecked'}
+                                        onPress={() => toggleExerciseSelection(item.exercise)}
+                                    />
+                                    <Text>{item.exercise}</Text>
+                                </View>
+                            )}
+                        />
+                    </>
+                )}
+                <Button title="Add to Routine" onPress={handleAddToRoutine} />
+                <Text>Your Routine:</Text>
+                {Object.entries(routine).map(([day, exercises]) => (
+                    <View key={day}>
+                        {exercises.map((exercise, index) => (
+                            <View style={styles.routine} key={index}>
+                                <Text>{day}: {exercise.category}</Text>
+                                <Text>- {exercise.exercise}</Text>
+                                {/* <Text>Sets: {exercise.sets}</Text>
                             <Text>Reps: {exercise.reps}</Text> */}
-                        </View>
-                    ))}
-                </View>
-            ))}
+                            </View>
+                        ))}
+                    </View>
+                ))}
+            </View>
         </View>
     );
 };

@@ -3,18 +3,21 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
+import commonStyles from '../styles';
 
 const DayScreen = ({ route, routine }) => {
   const { day } = route.params;
   const exercises = routine[day];
 
   return (
-    <View style={styles.container}>
-        <Text style={{fontSize: 16, fontWeight: 'bold'}}>{day}</Text>
+    <View style={commonStyles.container}>
+      <View style={styles.container}>
+        <Text style={{ fontSize: 16, fontWeight: 'bold' }}>{day}</Text>
 
-      {exercises.map((exercise, index) => (
-        <Text key={index}> {} - {exercise.exercise}: {exercise.sets} sets, {exercise.reps} reps</Text>
-      ))}
+        {exercises.map((exercise, index) => (
+          <Text key={index}> { } - {exercise.exercise}: {exercise.sets} sets, {exercise.reps} reps</Text>
+        ))}
+      </View>
     </View>
   );
 };
