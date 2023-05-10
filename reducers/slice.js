@@ -3,7 +3,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  exercises: {},
+  exercises: {
+    Biceps: [],
+    Triceps: [],
+    Legs: [],
+    Back: [],
+    Chest: [],
+    Shoulders: [],
+    Abs: [],
+  },
   tracked: {},
   routine: {},
 };
@@ -13,16 +21,27 @@ const slice = createSlice({
   initialState,
   reducers: {
     addExercise: (state, action) => {
-      state.exercises[action.payload.category] = action.payload;
+      if (!state.exercises[action.payload.category]) {
+        state.exercises[action.payload.category] = [];
+      }
+      state.exercises[action.payload.category].push(action.payload);
     },
     trackExercise: (state, action) => {
       state.tracked[action.payload.exercise] = action.payload;
     },
     addToRoutine: (state, action) => {
-      state.routine[action.payload.day] = action.payload.category;
+      if (!state.routine[action.payload.day]) {
+        state.routine[action.payload.day] = [];
+      }
+      state.routine[action.payload.day].push(action.payload.exercise);
     },
+    addToTracked: (state, action) => {
+      const { exercise, sets, reps } = action.payload;
+      state.tracked[exercise] = { sets, reps, done: false };
+    },
+    
   },
 });
 
-export const { addExercise, trackExercise, addToRoutine } = slice.actions;
+export const { addExercise, trackExercise, addToRoutine, addToTracked } = slice.actions;
 export default slice.reducer;
